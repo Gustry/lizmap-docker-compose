@@ -1,19 +1,19 @@
 # Run Lizmap stack with docker-compose
 
-Run a complete Lizmap stack with test data. 
+Run a complete Lizmap stack with test data.
 
 - Lizmap Web Client
 - QGIS Server
 - Redis
 
-**Note**: this is a sample configuration for testing Lizmap web client with QGIS and WPS features: 
-if you want use it on a production server you will need to make adjustments for meeting 
-your production requirements. 
+**Note**: this is a sample configuration for testing Lizmap Web Client with QGIS and WPS features:
+if you want use it on a production server you will need to make adjustments for meeting
+your production requirements.
 
 ## Requirements
 
 - Docker engine
-- docker-compose v2 
+- docker compose v2
 - make (optional in Windows)
 
 ## Quick start
@@ -23,34 +23,34 @@ Execute those commands above for your system and open your browser at http://loc
 ### Linux
 
 In a shell, configure the environment:
-```
+```bash
 make configure
 ```
-Or if you want to test specific version (here last 3.4.x version):
-```
-make configure LIZMAP_VERSION_TAG=3.4
+Or if you want to test set some specific options :
+```bash
+make configure POSTGIS_PORT=35432 LIZMAP_VERSION=3.5
 ```
 
 Run lizmap:
-```
+```bash
 docker compose up
 ```
 
 ### Windows
 
-In order to user Docker on Windows you must install [Docker desktop for Windows](https://docs.docker.com/desktop/windows/install/)
+In order to user Docker on Windows you must install [Docker desktop for Windows](https://docs.docker.com/desktop/windows/install/).
 
 You can execute same commands as Linux part given above if you use `make` (optional).
 
 Or in command powershell execute:
 
-```
+```bash
 docker compose --env-file .env.windows up
 ```
-Or if you want to test specific version, you can edit `.env.windows` and change (here last 3.4.x version):
+Or if you want to test specific version, you can edit `.env.windows` and change (here last 3.5.x version):
 
-```
-LIZMAP_VERSION_TAG=3.4
+```bash
+LIZMAP_VERSION_TAG=3.5
 ```
 
 ## Running the first time
@@ -68,15 +68,15 @@ Default login is `admin`, password `admin`. It will be asked to change it at fir
 
 You need to :
 * create a directory in `lizmap/instances`
-* visit http://localhost:8090/admin.php/admin/maps/
-* in the Lizmap admin panel, add the directory you created
+* visit http://localhost:8090/
+* in the [Lizmap admin panel](http://localhost:8090/admin.php/admin/maps/), add the directory you created
 * add one or more QGIS projects with the Lizmap CFG file in the directory
 
 ## Reset the configuration
 
 In command line
 
-```
+```bash
 make clean 
 ```
 
@@ -89,7 +89,7 @@ Postgis service may be activated by using the [profile option in docker-compose]
 
 Example:
 
-```
+```bash
 docker compose --profile postgis up
 ```
 
@@ -98,7 +98,7 @@ change the host name alias of database (which default to `db.lizmap`)
 
 Example
 
-```
+```bash
 make configure POSTGRES_PASSWORD=md5<my_md5_password> POSTGIS_ALIAS=mydb.host.name
 ```
 
